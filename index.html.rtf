@@ -1,0 +1,161 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 <!DOCTYPE html>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 <html lang="en">
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 <head>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0<meta charset="UTF-8" />
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0<title>Happy Birthday Sara \uc0\u55356 \u57225 </title>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0<script src="https://cdn.tailwindcss.com"></script>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0<style>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0body \{
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\}
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0</style>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 </head>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 <body class="min-h-screen flex items-center justify-center px-4">
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0<div class="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 max-w-md w-full text-center">
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<h1 class="text-3xl sm:text-4xl font-extrabold text-pink-500 mb-4">\uc0\u55356 \u57218  Happy Birthday! \u55356 \u57218 </h1>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<p class="text-base sm:text-lg text-gray-700 mb-6">
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0Wishing you a day filled with love, laughter, and everything that makes you smile.
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0May this year bring you happiness, success, and unforgettable memories.
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0</p>
+\f1\fs24 \
+\
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<div class="text-5xl sm:text-6xl mb-6">\uc0\u55356 \u57225 \u55356 \u57224 \u55356 \u57217 </div>
+\f1\fs24 \
+\
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<p class="text-gray-600 italic text-sm sm:text-base">
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0"Looking forward to spending many more memories with you."
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0</p>
+\f1\fs24 \
+\
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<button onclick="celebrate()" class="mt-6 px-6 py-3 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition w-full sm:w-auto">
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0Click for a Surprise \uc0\u55356 \u57226 
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0</button>
+\f1\fs24 \
+\
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<p id="surprise" class="mt-4 text-lg sm:text-xl font-semibold text-purple-600 hidden">
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0You are amazing! Have the best birthday ever! \uc0\u55357 \u56470 
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0</p>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0</div>
+\f1\fs24 \
+\
+
+\f0\fs29\fsmilli14667 \'a0\'a0<script>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0function celebrate() \{
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0document.getElementById('surprise').classList.remove('hidden');
+\f1\fs24 \
+\
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0confetti(\{
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0particleCount: 150,
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0spread: 70,
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0origin: \{ y: 0.6 \}
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\});
+\f1\fs24 \
+\
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0setTimeout(() => \{
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0confetti(\{ particleCount: 100, spread: 120, origin: \{ x: 0.1 \} \});
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0confetti(\{ particleCount: 100, spread: 120, origin: \{ x: 0.9 \} \});
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\}, 300);
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\}
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 \'a0\'a0</script>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 </body>
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 </html>
+\f1\fs24 \
+\
+}
