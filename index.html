@@ -1,60 +1,165 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Happy Birthday Sara 🎉</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <style>
     body {
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     }
+
+    /* Gentle floating animation */
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    /* Button glow */
+    .video-button {
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.3);
+    }
+
+    .video-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+    }
+
+    .video-button:active {
+      transform: scale(0.97);
+    }
   </style>
+
 </head>
-<body class="min-h-screen flex items-center justify-center px-4">
-  <div class="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 max-w-md w-full text-center">
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-pink-500 mb-4">🎂 Happy Birthday Sara! 🎂</h1>
-    <p class="text-base sm:text-lg text-gray-700 mb-6">
-      Wishing you a day filled with love, laughter, and everything that makes you smile.
-      May this year bring you happiness, success, and unforgettable memories.
-    </p>
 
-    <div class="text-5xl sm:text-6xl mb-6">🎉🎈🎁</div>
+<body class="min-h-screen flex items-center justify-center px-4 py-8">
 
-    <p class="text-gray-600 italic text-sm sm:text-base">
-      "Looking forward to spending many more memories with you."
-    </p>
+  <div class="bg-white shadow-2xl rounded-3xl p-6 sm:p-8 max-w-md w-full text-center">
 
-    <button onclick="celebrate()" class="mt-6 px-6 py-3 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition w-full sm:w-auto">
-      Click for a Surprise 🎊
-    </button>
+```
+<!-- Birthday heading -->
+<h1 class="text-3xl sm:text-4xl font-extrabold text-pink-500 mb-4">
+  🎂 Happy Birthday Sara! 🎂
+</h1>
 
-    <p id="surprise" class="mt-4 text-lg sm:text-xl font-semibold text-purple-600 hidden">
-      You are amazing! Have the best birthday ever! I love you so so much babs, and I'm sorry I wasn't able to be there on your birthday but I hope that you still have a really nice day babs. 💖
-    </p>
+<!-- Message -->
+<p class="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
+  Wishing you a day filled with love, laughter, and everything that makes you smile.
+  May this year bring you happiness, success, and unforgettable memories.
+</p>
+
+<!-- Birthday emojis -->
+<div class="text-5xl sm:text-6xl mb-6 floating">
+  🎉🎈🎁
+</div>
+
+<!-- Quote -->
+<p class="text-gray-600 italic text-sm sm:text-base">
+  "Looking forward to spending many more memories with you."
+</p>
+
+
+<!-- VIDEO BUTTON -->
+<a
+  href="https://youtube.com/shorts/AgImsdQ6Bd8"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="video-button mt-6 w-full flex items-center justify-center gap-3
+         px-6 py-4 bg-red-500 hover:bg-red-600
+         text-white font-bold rounded-2xl
+         transition-all duration-200"
+>
+  <span class="text-2xl">▶️</span>
+  <span>Watch Your Surprise 🎬</span>
+</a>
+
+<p class="text-xs text-gray-400 mt-2">
+  Tap to watch your birthday video
+</p>
+
+
+<!-- SURPRISE BUTTON -->
+<button
+  onclick="celebrate()"
+  class="mt-5 px-6 py-4 bg-pink-500 hover:bg-pink-600
+         text-white font-bold rounded-2xl shadow
+         transition-all duration-200 w-full"
+>
+  Click for a Surprise 🎊
+</button>
+
+
+<!-- Hidden message -->
+<p
+  id="surprise"
+  class="mt-5 text-lg sm:text-xl font-semibold
+         text-purple-600 hidden leading-relaxed"
+>
+  You are amazing! Have the best birthday ever!
+  I love you so so much babs, and I'm sorry I wasn't able
+  to be there on your birthday but I hope that you still
+  have a really nice day babs. 💖
+</p>
+```
+
   </div>
 
   <script>
     function celebrate() {
-      document.getElementById('surprise').classList.remove('hidden');
 
+      // Show the message
+      document.getElementById("surprise").classList.remove("hidden");
+
+      // Main confetti burst
       confetti({
         particleCount: 150,
         spread: 70,
-        origin: { y: 0.6 }
+        origin: {
+          y: 0.6
+        }
       });
 
+      // Side bursts
       setTimeout(() => {
-        confetti({ particleCount: 100, spread: 120, origin: { x: 0.1 } });
-        confetti({ particleCount: 100, spread: 120, origin: { x: 0.9 } });
+
+        confetti({
+          particleCount: 100,
+          spread: 120,
+          origin: {
+            x: 0.1
+          }
+        });
+
+        confetti({
+          particleCount: 100,
+          spread: 120,
+          origin: {
+            x: 0.9
+          }
+        });
+
       }, 300);
     }
   </script>
+
 </body>
 </html>
-
-
 
 
 
