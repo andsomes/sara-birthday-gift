@@ -2,8 +2,8 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Happy Birthday Sara 🎉</title>
 
@@ -28,19 +28,6 @@
       50% {
         transform: translateY(-8px);
       }
-    }
-
-    .video-button {
-      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.3);
-    }
-
-    .video-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
-    }
-
-    .video-button:active {
-      transform: scale(0.97);
     }
 
     .quiz-card {
@@ -96,17 +83,42 @@
         opacity: 1;
       }
     }
+
+    .answer-button {
+      transition: all 0.2s ease;
+    }
+
+    .answer-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .answer-button:active {
+      transform: scale(0.97);
+    }
+
+    .video-button {
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.3);
+    }
+
+    .video-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+    }
+
+    .video-button:active {
+      transform: scale(0.97);
+    }
   </style>
 
 </head>
 
 <body class="min-h-screen flex items-center justify-center px-4 py-8">
 
-  <!-- ========================= -->
+  <!-- ================================================= -->
 
-  <!-- QUIZ / PASSWORD SCREEN -->
+  <!-- QUIZ SCREEN -->
 
-  <!-- ========================= -->
+  <!-- ================================================= -->
 
   <div id="quizScreen" class="w-full max-w-md">
 
@@ -116,7 +128,7 @@
   class="quiz-card bg-white shadow-2xl rounded-3xl p-6 sm:p-8 text-center"
 >
 
-  <!-- Header -->
+  <!-- Quiz icon -->
   <div class="text-5xl mb-4 floating">
     🔐
   </div>
@@ -134,15 +146,15 @@
   <div class="mb-6">
 
     <div class="flex justify-between text-xs text-gray-400 mb-2">
-      <span id="progressText">Question 1 of 4</span>
-      <span id="progressPercent">25%</span>
+      <span id="progressText">Question 1 of 5</span>
+      <span id="progressPercent">20%</span>
     </div>
 
     <div class="w-full bg-pink-100 rounded-full h-2">
       <div
         id="progressBar"
         class="bg-pink-500 h-2 rounded-full transition-all duration-500"
-        style="width: 25%"
+        style="width: 20%"
       ></div>
     </div>
 
@@ -159,30 +171,80 @@
       Sara's favourite teddy bear?
     </p>
 
-    <input
-      id="answerInput"
-      type="text"
-      autocomplete="off"
-      autocapitalize="none"
-      placeholder="Type your answer..."
-      class="w-full px-5 py-4 text-lg border-2 border-pink-200
-             rounded-2xl outline-none
-             focus:border-pink-500 focus:ring-2 focus:ring-pink-200
-             text-center transition"
-    />
 
-    <button
-      onclick="checkAnswer()"
-      class="mt-4 w-full px-6 py-4
-             bg-pink-500 hover:bg-pink-600
-             text-white font-bold text-lg
-             rounded-2xl shadow-lg
-             transition-all duration-200
-             active:scale-95"
+    <!-- Text answer -->
+    <div id="textAnswer">
+
+      <input
+        id="answerInput"
+        type="text"
+        autocomplete="off"
+        autocapitalize="none"
+        placeholder="Type your answer..."
+        class="w-full px-5 py-4 text-lg border-2 border-pink-200
+               rounded-2xl outline-none
+               focus:border-pink-500 focus:ring-2 focus:ring-pink-200
+               text-center transition"
+      >
+
+      <button
+        onclick="checkTextAnswer()"
+        class="mt-4 w-full px-6 py-4
+               bg-pink-500 hover:bg-pink-600
+               text-white font-bold text-lg
+               rounded-2xl shadow-lg
+               transition-all duration-200
+               active:scale-95"
+      >
+        Submit Answer 💭
+      </button>
+
+    </div>
+
+
+    <!-- Multiple choice answers -->
+    <div
+      id="multipleChoice"
+      class="hidden space-y-3"
     >
-      Submit Answer 💭
-    </button>
 
+      <button
+        onclick="checkMultipleChoice('Biology')"
+        class="answer-button w-full px-5 py-4
+               bg-pink-50 hover:bg-pink-100
+               border-2 border-pink-200
+               text-gray-800 font-semibold text-lg
+               rounded-2xl"
+      >
+        🧬 Biology
+      </button>
+
+      <button
+        onclick="checkMultipleChoice('Chemistry')"
+        class="answer-button w-full px-5 py-4
+               bg-pink-50 hover:bg-pink-100
+               border-2 border-pink-200
+               text-gray-800 font-semibold text-lg
+               rounded-2xl"
+      >
+        ⚗️ Chemistry
+      </button>
+
+      <button
+        onclick="checkMultipleChoice('Mathematics')"
+        class="answer-button w-full px-5 py-4
+               bg-pink-50 hover:bg-pink-100
+               border-2 border-pink-200
+               text-gray-800 font-semibold text-lg
+               rounded-2xl"
+      >
+        📐 Mathematics
+      </button>
+
+    </div>
+
+
+    <!-- Feedback -->
     <p
       id="feedback"
       class="mt-4 text-sm font-semibold min-h-[24px]"
@@ -195,11 +257,11 @@
 
   </div>
 
-  <!-- ========================= -->
+  <!-- ================================================= -->
 
   <!-- MAIN BIRTHDAY WEBSITE -->
 
-  <!-- ========================= -->
+  <!-- ================================================= -->
 
   <div
     id="birthdayWebsite"
@@ -285,11 +347,11 @@
 
   </div>
 
-  <!-- ========================= -->
+  <!-- ================================================= -->
 
   <!-- JAVASCRIPT -->
 
-  <!-- ========================= -->
+  <!-- ================================================= -->
 
   <script>
 
@@ -297,36 +359,38 @@
       ============================================
       QUIZ QUESTIONS
       ============================================
-
-      Answers are checked without caring about:
-      - Capital letters
-      - Lowercase letters
-      - Extra spaces
-
-      So "seal", "Seal", and " SEAL "
-      will all be accepted.
     */
 
     const questions = [
 
       {
         question: "Sara's favourite teddy bear?",
-        answer: "seal"
+        answer: "seal",
+        type: "text"
       },
 
       {
         question: "What month did Sara and Andrew start talking?",
-        answer: "december"
+        answer: "december",
+        type: "text"
       },
 
       {
         question: "What month did Sara and Andrew start dating?",
-        answer: "january"
+        answer: "january",
+        type: "text"
+      },
+
+      {
+        question: "During what class did Andrew and Sara meet?",
+        answer: "biology",
+        type: "multiple"
       },
 
       {
         question: "What is the name of the cutie patootie whose birthday it is?",
-        answer: "sara"
+        answer: "sara",
+        type: "text"
       }
 
     ];
@@ -362,23 +426,28 @@
     const birthdayWebsite =
       document.getElementById("birthdayWebsite");
 
+    const textAnswer =
+      document.getElementById("textAnswer");
+
+    const multipleChoice =
+      document.getElementById("multipleChoice");
+
 
     /*
+      ============================================
       UPDATE QUESTION
+      ============================================
     */
 
     function updateQuestion() {
 
-      const question = questions[currentQuestion];
+      const question =
+        questions[currentQuestion];
 
       questionElement.textContent =
         question.question;
 
-      answerInput.value = "";
-
       feedback.textContent = "";
-
-      answerInput.focus();
 
 
       // Update progress
@@ -401,14 +470,40 @@
 
       progressBar.style.width =
         `${percentage}%`;
+
+
+      // Choose answer type
+
+      if (question.type === "multiple") {
+
+        textAnswer.classList.add("hidden");
+
+        multipleChoice.classList.remove("hidden");
+
+      } else {
+
+        multipleChoice.classList.add("hidden");
+
+        textAnswer.classList.remove("hidden");
+
+        answerInput.value = "";
+
+        setTimeout(() => {
+          answerInput.focus();
+        }, 100);
+
+      }
+
     }
 
 
     /*
-      CHECK ANSWER
+      ============================================
+      CHECK TEXT ANSWER
+      ============================================
     */
 
-    function checkAnswer() {
+    function checkTextAnswer() {
 
       const userAnswer =
         answerInput.value
@@ -420,8 +515,6 @@
           .trim()
           .toLowerCase();
 
-
-      // Don't allow an empty answer
 
       if (userAnswer === "") {
 
@@ -435,105 +528,159 @@
       }
 
 
-      // Correct answer
-
       if (userAnswer === correctAnswer) {
 
-        feedback.textContent =
-          "Correct! 🎉";
+        correctAnswerGiven();
 
-        feedback.className =
-          "mt-4 text-sm font-semibold text-green-500 min-h-[24px]";
+      } else {
 
-
-        currentQuestion++;
-
-
-        // All questions completed
-
-        if (currentQuestion === questions.length) {
-
-          setTimeout(() => {
-
-            quizScreen.classList.add("hidden");
-
-            birthdayWebsite.classList.remove("hidden");
-
-            // Big celebration
-            confetti({
-              particleCount: 250,
-              spread: 100,
-              origin: {
-                y: 0.6
-              }
-            });
-
-            setTimeout(() => {
-
-              confetti({
-                particleCount: 150,
-                spread: 120,
-                origin: {
-                  x: 0.1
-                }
-              });
-
-              confetti({
-                particleCount: 150,
-                spread: 120,
-                origin: {
-                  x: 0.9
-                }
-              });
-
-            }, 500);
-
-          }, 700);
-
-        }
-
-        // Move to next question
-
-        else {
-
-          setTimeout(() => {
-            updateQuestion();
-          }, 600);
-
-        }
+        wrongAnswer();
 
       }
 
-      // Wrong answer
-
-      else {
-
-        feedback.textContent =
-          "Nope! Try again 😭";
-
-        feedback.className =
-          "mt-4 text-sm font-semibold text-red-500 min-h-[24px]";
-
-
-        // Shake the card
-
-        quizCard.classList.remove("shake");
-
-        void quizCard.offsetWidth;
-
-        quizCard.classList.add("shake");
-
-
-        // Clear answer
-
-        answerInput.select();
-      }
     }
 
 
     /*
-      Allow ENTER to submit
-      (particularly useful on phones)
+      ============================================
+      CHECK MULTIPLE CHOICE
+      ============================================
+    */
+
+    function checkMultipleChoice(answer) {
+
+      const correctAnswer =
+        questions[currentQuestion].answer;
+
+
+      if (
+        answer.toLowerCase() ===
+        correctAnswer.toLowerCase()
+      ) {
+
+        correctAnswerGiven();
+
+      } else {
+
+        wrongAnswer();
+
+      }
+
+    }
+
+
+    /*
+      ============================================
+      CORRECT ANSWER
+      ============================================
+    */
+
+    function correctAnswerGiven() {
+
+      feedback.textContent =
+        "Correct! 🎉";
+
+      feedback.className =
+        "mt-4 text-sm font-semibold text-green-500 min-h-[24px]";
+
+
+      currentQuestion++;
+
+
+      // All questions completed
+
+      if (currentQuestion === questions.length) {
+
+        setTimeout(() => {
+
+          quizScreen.classList.add("hidden");
+
+          birthdayWebsite.classList.remove("hidden");
+
+
+          // Big celebration
+
+          confetti({
+            particleCount: 250,
+            spread: 100,
+            origin: {
+              y: 0.6
+            }
+          });
+
+
+          setTimeout(() => {
+
+            confetti({
+              particleCount: 150,
+              spread: 120,
+              origin: {
+                x: 0.1
+              }
+            });
+
+            confetti({
+              particleCount: 150,
+              spread: 120,
+              origin: {
+                x: 0.9
+              }
+            });
+
+          }, 500);
+
+        }, 700);
+
+      } else {
+
+        // Move to next question
+
+        setTimeout(() => {
+          updateQuestion();
+        }, 600);
+
+      }
+
+    }
+
+
+    /*
+      ============================================
+      WRONG ANSWER
+      ============================================
+    */
+
+    function wrongAnswer() {
+
+      feedback.textContent =
+        "Nope! Try again 😭";
+
+      feedback.className =
+        "mt-4 text-sm font-semibold text-red-500 min-h-[24px]";
+
+
+      // Shake card
+
+      quizCard.classList.remove("shake");
+
+      void quizCard.offsetWidth;
+
+      quizCard.classList.add("shake");
+
+
+      // Select existing answer on text questions
+
+      if (questions[currentQuestion].type === "text") {
+        answerInput.select();
+      }
+
+    }
+
+
+    /*
+      ============================================
+      ENTER KEY SUPPORT
+      ============================================
     */
 
     answerInput.addEventListener(
@@ -541,7 +688,7 @@
       function(event) {
 
         if (event.key === "Enter") {
-          checkAnswer();
+          checkTextAnswer();
         }
 
       }
@@ -549,26 +696,26 @@
 
 
     /*
+      ============================================
       START QUIZ
+      ============================================
     */
 
     updateQuestion();
 
 
     /*
+      ============================================
       BIRTHDAY SURPRISE
+      ============================================
     */
 
     function celebrate() {
-
-      // Show the message
 
       document
         .getElementById("surprise")
         .classList.remove("hidden");
 
-
-      // Main confetti burst
 
       confetti({
         particleCount: 150,
@@ -578,8 +725,6 @@
         }
       });
 
-
-      // Side bursts
 
       setTimeout(() => {
 
