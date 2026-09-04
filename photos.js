@@ -1,0 +1,1 @@
+window.SARA_PHOTOS = [];
