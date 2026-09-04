@@ -1,0 +1,1 @@
+This file is intentionally a placeholder for the 403 photo filenames extracted from photo.zip. The gallery expects the actual images in /photos/.
