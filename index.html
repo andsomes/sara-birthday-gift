@@ -16,7 +16,6 @@
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     }
 
-    /* Gentle floating animation */
     .floating {
       animation: floating 3s ease-in-out infinite;
     }
@@ -31,7 +30,6 @@
       }
     }
 
-    /* Button glow */
     .video-button {
       box-shadow: 0 6px 20px rgba(236, 72, 153, 0.3);
     }
@@ -44,89 +42,534 @@
     .video-button:active {
       transform: scale(0.97);
     }
+
+    .quiz-card {
+      animation: cardAppear 0.6s ease-out;
+    }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-8px);
+      }
+
+      75% {
+        transform: translateX(8px);
+      }
+    }
+
+    .success {
+      animation: success 0.7s ease-out;
+    }
+
+    @keyframes success {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      70% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
   </style>
 
 </head>
 
 <body class="min-h-screen flex items-center justify-center px-4 py-8">
 
-  <div class="bg-white shadow-2xl rounded-3xl p-6 sm:p-8 max-w-md w-full text-center">
+  <!-- ========================= -->
 
+  <!-- QUIZ / PASSWORD SCREEN -->
 
-<!-- Birthday heading -->
-<h1 class="text-3xl sm:text-4xl font-extrabold text-pink-500 mb-4">
-  🎂 Happy Birthday Sara! 🎂
-</h1>
+  <!-- ========================= -->
 
-<!-- Message -->
-<p class="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
-  Wishing you a day filled with love, laughter, and everything that makes you smile.
-  May this year bring you happiness, success, and unforgettable memories.
-</p>
+  <div id="quizScreen" class="w-full max-w-md">
 
-<!-- Birthday emojis -->
-<div class="text-5xl sm:text-6xl mb-6 floating">
-  🎉🎈🎁
-</div>
-
-<!-- Quote -->
-<p class="text-gray-600 italic text-sm sm:text-base">
-  "Looking forward to spending many more memories with you."
-</p>
-
-
-<!-- VIDEO BUTTON -->
-<a
-  href="https://youtube.com/shorts/AgImsdQ6Bd8"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="video-button mt-6 w-full flex items-center justify-center gap-3
-         px-6 py-4 bg-red-500 hover:bg-red-600
-         text-white font-bold rounded-2xl
-         transition-all duration-200"
+```
+<div
+  id="quizCard"
+  class="quiz-card bg-white shadow-2xl rounded-3xl p-6 sm:p-8 text-center"
 >
-  <span class="text-2xl">▶️</span>
-  <span>Watch Your Surprise 🎬</span>
-</a>
 
-<p class="text-xs text-gray-400 mt-2">
-  Tap to watch a lil video I made
-</p>
+  <!-- Header -->
+  <div class="text-5xl mb-4 floating">
+    🔐
+  </div>
 
+  <h1 class="text-3xl sm:text-4xl font-extrabold text-pink-500 mb-3">
+    Before You Enter... 👀
+  </h1>
 
-<!-- SURPRISE BUTTON -->
-<button
-  onclick="celebrate()"
-  class="mt-5 px-6 py-4 bg-pink-500 hover:bg-pink-600
-         text-white font-bold rounded-2xl shadow
-         transition-all duration-200 w-full"
->
-  Click for a Surprise 🎊
-</button>
+  <p class="text-gray-600 text-sm sm:text-base mb-6 leading-relaxed">
+    You have to prove that you know the birthday girl first! 💕
+  </p>
 
 
-<!-- Hidden message -->
-<p
-  id="surprise"
-  class="mt-5 text-lg sm:text-xl font-semibold
-         text-purple-600 hidden leading-relaxed"
->
-  You are amazing! Have the best birthday ever!
-  I love you so so much babs, and I'm sorry I wasn't able
-  to be there on your birthday but I hope that you still
-  have a really nice day babs. 💖
-</p>
+  <!-- Progress -->
+  <div class="mb-6">
 
+    <div class="flex justify-between text-xs text-gray-400 mb-2">
+      <span id="progressText">Question 1 of 4</span>
+      <span id="progressPercent">25%</span>
+    </div>
+
+    <div class="w-full bg-pink-100 rounded-full h-2">
+      <div
+        id="progressBar"
+        class="bg-pink-500 h-2 rounded-full transition-all duration-500"
+        style="width: 25%"
+      ></div>
+    </div>
 
   </div>
 
+
+  <!-- Question -->
+  <div id="questionArea">
+
+    <p
+      id="question"
+      class="text-xl sm:text-2xl font-bold text-gray-800 mb-5"
+    >
+      Sara's favourite teddy bear?
+    </p>
+
+    <input
+      id="answerInput"
+      type="text"
+      autocomplete="off"
+      autocapitalize="none"
+      placeholder="Type your answer..."
+      class="w-full px-5 py-4 text-lg border-2 border-pink-200
+             rounded-2xl outline-none
+             focus:border-pink-500 focus:ring-2 focus:ring-pink-200
+             text-center transition"
+    />
+
+    <button
+      onclick="checkAnswer()"
+      class="mt-4 w-full px-6 py-4
+             bg-pink-500 hover:bg-pink-600
+             text-white font-bold text-lg
+             rounded-2xl shadow-lg
+             transition-all duration-200
+             active:scale-95"
+    >
+      Submit Answer 💭
+    </button>
+
+    <p
+      id="feedback"
+      class="mt-4 text-sm font-semibold min-h-[24px]"
+    ></p>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- ========================= -->
+
+  <!-- MAIN BIRTHDAY WEBSITE -->
+
+  <!-- ========================= -->
+
+  <div
+    id="birthdayWebsite"
+    class="hidden w-full max-w-md"
+  >
+
+```
+<div
+  class="bg-white shadow-2xl rounded-3xl p-6 sm:p-8 text-center success"
+>
+
+  <!-- Birthday heading -->
+  <h1 class="text-3xl sm:text-4xl font-extrabold text-pink-500 mb-4">
+    🎂 Happy Birthday Sara! 🎂
+  </h1>
+
+
+  <!-- Message -->
+  <p class="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
+    Wishing you a day filled with love, laughter, and everything that
+    makes you smile. May this year bring you happiness, success,
+    and unforgettable memories.
+  </p>
+
+
+  <!-- Birthday emojis -->
+  <div class="text-5xl sm:text-6xl mb-6 floating">
+    🎉🎈🎁
+  </div>
+
+
+  <!-- Quote -->
+  <p class="text-gray-600 italic text-sm sm:text-base">
+    "Looking forward to spending many more memories with you."
+  </p>
+
+
+  <!-- VIDEO BUTTON -->
+  <a
+    href="https://youtube.com/shorts/AgImsdQ6Bd8"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="video-button mt-6 w-full flex items-center justify-center gap-3
+           px-6 py-4 bg-red-500 hover:bg-red-600
+           text-white font-bold rounded-2xl
+           transition-all duration-200"
+  >
+    <span class="text-2xl">▶️</span>
+    <span>Watch Your Surprise 🎬</span>
+  </a>
+
+  <p class="text-xs text-gray-400 mt-2">
+    Tap to watch a lil video I made
+  </p>
+
+
+  <!-- SURPRISE BUTTON -->
+  <button
+    onclick="celebrate()"
+    class="mt-5 px-6 py-4
+           bg-pink-500 hover:bg-pink-600
+           text-white font-bold rounded-2xl shadow
+           transition-all duration-200 w-full"
+  >
+    Click for a Surprise 🎊
+  </button>
+
+
+  <!-- Hidden message -->
+  <p
+    id="surprise"
+    class="mt-5 text-lg sm:text-xl font-semibold
+           text-purple-600 hidden leading-relaxed"
+  >
+    You are amazing! Have the best birthday ever!
+    I love you so so much babs, and I'm sorry I wasn't able
+    to be there on your birthday but I hope that you still
+    have a really nice day babs. 💖
+  </p>
+
+</div>
+```
+
+  </div>
+
+  <!-- ========================= -->
+
+  <!-- JAVASCRIPT -->
+
+  <!-- ========================= -->
+
   <script>
+
+    /*
+      ============================================
+      QUIZ QUESTIONS
+      ============================================
+
+      Answers are checked without caring about:
+      - Capital letters
+      - Lowercase letters
+      - Extra spaces
+
+      So "seal", "Seal", and " SEAL "
+      will all be accepted.
+    */
+
+    const questions = [
+
+      {
+        question: "Sara's favourite teddy bear?",
+        answer: "seal"
+      },
+
+      {
+        question: "What month did Sara and Andrew start talking?",
+        answer: "december"
+      },
+
+      {
+        question: "What month did Sara and Andrew start dating?",
+        answer: "january"
+      },
+
+      {
+        question: "What is the name of the cutie patootie whose birthday it is?",
+        answer: "sara"
+      }
+
+    ];
+
+
+    let currentQuestion = 0;
+
+
+    const questionElement =
+      document.getElementById("question");
+
+    const answerInput =
+      document.getElementById("answerInput");
+
+    const feedback =
+      document.getElementById("feedback");
+
+    const progressText =
+      document.getElementById("progressText");
+
+    const progressPercent =
+      document.getElementById("progressPercent");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const quizCard =
+      document.getElementById("quizCard");
+
+    const quizScreen =
+      document.getElementById("quizScreen");
+
+    const birthdayWebsite =
+      document.getElementById("birthdayWebsite");
+
+
+    /*
+      UPDATE QUESTION
+    */
+
+    function updateQuestion() {
+
+      const question = questions[currentQuestion];
+
+      questionElement.textContent =
+        question.question;
+
+      answerInput.value = "";
+
+      feedback.textContent = "";
+
+      answerInput.focus();
+
+
+      // Update progress
+
+      const questionNumber =
+        currentQuestion + 1;
+
+      const totalQuestions =
+        questions.length;
+
+      const percentage =
+        (questionNumber / totalQuestions) * 100;
+
+
+      progressText.textContent =
+        `Question ${questionNumber} of ${totalQuestions}`;
+
+      progressPercent.textContent =
+        `${percentage}%`;
+
+      progressBar.style.width =
+        `${percentage}%`;
+    }
+
+
+    /*
+      CHECK ANSWER
+    */
+
+    function checkAnswer() {
+
+      const userAnswer =
+        answerInput.value
+          .trim()
+          .toLowerCase();
+
+      const correctAnswer =
+        questions[currentQuestion].answer
+          .trim()
+          .toLowerCase();
+
+
+      // Don't allow an empty answer
+
+      if (userAnswer === "") {
+
+        feedback.textContent =
+          "You need to enter an answer! 👀";
+
+        feedback.className =
+          "mt-4 text-sm font-semibold text-orange-500 min-h-[24px]";
+
+        return;
+      }
+
+
+      // Correct answer
+
+      if (userAnswer === correctAnswer) {
+
+        feedback.textContent =
+          "Correct! 🎉";
+
+        feedback.className =
+          "mt-4 text-sm font-semibold text-green-500 min-h-[24px]";
+
+
+        currentQuestion++;
+
+
+        // All questions completed
+
+        if (currentQuestion === questions.length) {
+
+          setTimeout(() => {
+
+            quizScreen.classList.add("hidden");
+
+            birthdayWebsite.classList.remove("hidden");
+
+            // Big celebration
+            confetti({
+              particleCount: 250,
+              spread: 100,
+              origin: {
+                y: 0.6
+              }
+            });
+
+            setTimeout(() => {
+
+              confetti({
+                particleCount: 150,
+                spread: 120,
+                origin: {
+                  x: 0.1
+                }
+              });
+
+              confetti({
+                particleCount: 150,
+                spread: 120,
+                origin: {
+                  x: 0.9
+                }
+              });
+
+            }, 500);
+
+          }, 700);
+
+        }
+
+        // Move to next question
+
+        else {
+
+          setTimeout(() => {
+            updateQuestion();
+          }, 600);
+
+        }
+
+      }
+
+      // Wrong answer
+
+      else {
+
+        feedback.textContent =
+          "Nope! Try again 😭";
+
+        feedback.className =
+          "mt-4 text-sm font-semibold text-red-500 min-h-[24px]";
+
+
+        // Shake the card
+
+        quizCard.classList.remove("shake");
+
+        void quizCard.offsetWidth;
+
+        quizCard.classList.add("shake");
+
+
+        // Clear answer
+
+        answerInput.select();
+      }
+    }
+
+
+    /*
+      Allow ENTER to submit
+      (particularly useful on phones)
+    */
+
+    answerInput.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Enter") {
+          checkAnswer();
+        }
+
+      }
+    );
+
+
+    /*
+      START QUIZ
+    */
+
+    updateQuestion();
+
+
+    /*
+      BIRTHDAY SURPRISE
+    */
+
     function celebrate() {
 
       // Show the message
-      document.getElementById("surprise").classList.remove("hidden");
+
+      document
+        .getElementById("surprise")
+        .classList.remove("hidden");
+
 
       // Main confetti burst
+
       confetti({
         particleCount: 150,
         spread: 70,
@@ -135,7 +578,9 @@
         }
       });
 
+
       // Side bursts
+
       setTimeout(() => {
 
         confetti({
@@ -155,7 +600,9 @@
         });
 
       }, 300);
+
     }
+
   </script>
 
 </body>
