@@ -1,0 +1,1 @@
+The gallery uses photos.js and expects the 403 images to be extracted into the photos/ folder.
